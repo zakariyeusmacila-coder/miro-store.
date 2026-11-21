@@ -1,8 +1,6 @@
 import Header from "@/components/Header";
-import Shop from "@/components/Shop";
-import Events from "@/components/Events";
-import CategoryButton from "@/components/CategoryButton";
-import { CATS } from "@/lib/supabase";
+import ContactForm from "@/components/ContactForm";
+import { ICONS } from "@/lib/icons";
 
 export default function Home() {
   return (
@@ -13,36 +11,11 @@ export default function Home() {
           <div className="copy">
             <span className="eyebrow">MIRO STORE.so</span>
             <h1>Quality <em>You Can Feel.</em></h1>
-            <p className="lead">Shaarar linen ah oo ragga loogu tolay gacanta, oo ay ku jiraan Formal iyo Casual. Dooro qeebta marada, cabbirkaaga iyo midabkaaga, kadibna ku bixi EVC.</p>
-            <div className="row"><a className="btn" href="#dukaan">Dalbo shaar</a><a className="btn alt" href="#qeebaha">Eeg qeebaha linen</a></div>
+            <p className="lead">Shaarar linen ah oo ragga loogu tolay gacanta, oo ay ku jiraan Formal iyo Casual.</p>
+            <div className="row"><a className="btn" href="#wacyigelin">Linen waa maxay?</a><a className="btn alt" href="#xiriir">Xiriir</a></div>
           </div>
           <div className="ph" role="img" aria-label="Maro linen ah oo midabbo kala duwan leh" />
-        </section>
-
-        <section className="blk" id="qeebaha">
-          <div className="head"><span className="eyebrow">Qeebaha marada</span><h2>Qeebaha Linen-ka</h2><p>Qeeb kasta waxaa ku qoran waxa uu ka kooban yahay, sida uu dareemayo iyo sida loo daryeelo.</p></div>
-          <div className="cats">
-            {CATS.map((c) => (
-              <article className="cat" key={c.id}>
-                <div className="im" role="img" aria-label={c.name} style={{ backgroundImage: `url(/img/${c.img}.jpg)`, backgroundPosition: c.pos }} />
-                <div className="bd">
-                  <span className="eyebrow">{c.en}</span><h3>{c.name}</h3><p className="note">{c.info}</p>
-                  <dl className="facts">{c.facts.map(([k, v]) => <div key={k} style={{ display: "contents" }}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
-                  <CategoryButton id={c.id} />
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="blk" id="dukaan">
-          <div className="head"><span className="eyebrow">Shaararka</span><h2>Dooro shaarkaaga</h2><p>Dooro nooca, midabka iyo cabbirka (S ilaa XXL). Cabbirka lama qoro, waa la doortaa.</p></div>
-          <Shop />
-        </section>
-
-        <section className="blk" id="events">
-          <div className="head"><span className="eyebrow">Miro Store Events</span><h2>Dhacdooyinka</h2><p>Dhacdo kasta oo Miro Store qabsato halkan ayaa lagu soo bandhigaa. Marka ay dhacdo dhammaato, sawirada ayaa la soo gelinayaa.</p></div>
-          <Events />
+          <div className="hero-foot"><span>TikTok / Instagram @miro.store.so</span><a href="#wacyigelin">Hoos u fiiri</a></div>
         </section>
 
         <section className="blk" id="wacyigelin">
@@ -60,9 +33,34 @@ export default function Home() {
           </div>
         </section>
 
-        <footer id="xiriir">
+        <section className="blk" id="xiriir">
+          <div className="contact2">
+            <div className="intro">
+              <span className="eyebrow">Xiriir</span><h2>Nala soo xiriir</h2>
+              <p>Noo qor wixii su&apos;aal ah ama dalab gaar ah oo ku saabsan shaarka linen-ka. WhatsApp ayaa ugu dhaqsaha badan.</p>
+              <ul className="chan">
+                {[
+                  { k: "whatsapp", l: "WhatsApp", v: "+252 77 071 4732", h: "https://wa.me/252770714732" },
+                  { k: "instagram", l: "Instagram", v: "@miro.store.so", h: "https://www.instagram.com/miro.store.so" },
+                  { k: "tiktok", l: "TikTok", v: "@miro.store.so", h: "https://www.tiktok.com/@miro.store.so" },
+                ].map((c) => (
+                  <li key={c.k}>
+                    <a href={c.h} target="_blank" rel="noopener noreferrer">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={ICONS[c.k]} /></svg>
+                      <span className="tx2"><small>{c.l}</small><b>{c.v}</b></span>
+                      <span className="go" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ContactForm />
+          </div>
+        </section>
+
+        <footer>
           <div><b>MIRO STORE.so</b><br />Quality You Can Feel.</div>
-          <div><b>Xiriir</b><br />Telefoon: <span className="sel">252 770714732</span><br />TikTok: <span className="sel">@miro.store.so</span><br />Instagram: <span className="sel">@miro.store.so</span></div>
+          <div><b>Telefoon</b><br /><span className="sel">252 770714732</span></div>
         </footer>
       </div></main>
     </>

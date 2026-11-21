@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { useAuth } from "@/lib/auth";
 import { supabase, money, mediaUrl } from "@/lib/supabase";
 import { uploadImage } from "@/lib/upload";
+import LoginModal from "@/components/LoginModal";
 
 type Order = { id: string; user_id: string; product_name: string; color: string; size: string; total: number; phone: string; status: string; created_at: string };
 type Cust = { id: string; email: string; name: string; phone: string };
@@ -21,6 +22,7 @@ export default function Admin() {
   const [prods, setProds] = useState<Prod[]>([]);
   const [evs, setEvs] = useState<Ev[]>([]);
   const [msg, setMsg] = useState("");
+  const [login, setLogin] = useState(false);
   const [form, setForm] = useState({ title: "", date: "", text: "" });
 
   const load = useCallback(async () => {
@@ -44,9 +46,15 @@ export default function Admin() {
   if (!ready) return <><Header /><div className="wrap" style={{ paddingBlock: "3rem" }}><p className="hint">Waa la soo rarayaa...</p></div></>;
   if (!email || !isAdmin) return (
     <><Header /><div className="wrap" style={{ paddingBlock: "3rem" }}>
-      <div className="empty">Dashboard-ka waxaa arki kara admin-ka oo kaliya. Ku gal email-ka admin-ka.</div>
-      <p style={{ marginTop: "1rem" }}><Link className="btn alt" href="/">Ku laabo</Link></p>
-    </div></>
+      <span className="eyebrow">Admin</span><h2 style={{ margin: ".6rem 0 1rem" }}>Gelitaanka Dashboard-ka</h2>
+      <p className="note" style={{ maxWidth: "52ch", marginBottom: "1.2rem" }}>
+        {email ? "Email-kan (" + email + ") admin ma aha. Ka bax oo ku gal email-ka admin-ka." : "Geli email-ka admin-ka, waxaan kuu diraynaa xiriiriye (link) si aad u gasho."}
+      </p>
+      <div className="row">
+        {!email && <button className="btn gold" onClick={() => setLogin(true)}>Gal</button>}
+        <Link className="btn alt" href="/">Ku laabo</Link>
+      </div>
+    </div>{login && <LoginModal onClose={() => setLogin(false)} />}</>
   );
 
   const paid = orders.filter((o) => o.status === "Paid" || o.status === "Delivered");

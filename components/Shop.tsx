@@ -71,9 +71,8 @@ export default function Shop() {
           return (
             <article className="prod" key={p.id}>
               <div className="im" style={productStyle(p)}><span className="tag">{p.type}</span></div>
-              <div className="bd">
+                            <div className="bd">
                 <h3>{p.name}</h3>
-                <div className="price">{money(p.price)}</div>
                 <div className="sw" role="group" aria-label="Midab">
                   {p.colors.map((col) => <button key={col} title={col} aria-label={col} aria-pressed={c.color === col} style={{ background: COLORS[col] ?? "#ccc" }} onClick={() => set(p, { color: col })} />)}
                 </div>
@@ -96,7 +95,6 @@ export default function Shop() {
           <div className="sum">
             <div><b>{cur.name}</b> ({cur.type})</div>
             <div>Midab: {get(cur).color} · Cabbir: {get(cur).size}</div>
-            <div>Wadar: <b>{money(cur.price)}</b></div>
             <div>EVC: <b>{profile.phone}</b></div>
           </div>
           <p className="hint">Marka aad xaqiijiso, dalabkaaga waa la diiwaangelinayaa. Miro Store ayaa lambarkan kuu soo xiriiri doona si lacagta EVC loo xaqiijiyo.</p>

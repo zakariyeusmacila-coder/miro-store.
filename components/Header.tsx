@@ -13,10 +13,9 @@ export default function Header() {
       <header className="top"><div className="wrap">
         <Link className="logo" href="/">MIRO<span> STORE</span></Link>
         <nav className="main" aria-label="Menu">
-          <a href="/#qeebaha">Qeebaha Linen</a><a href="/#dukaan">Shaararka</a><a href="/#events">Events</a><a href="/#wacyigelin">Linen waa maxay?</a><a href="/#xiriir">Xiriir</a>
+          <a href="/#wacyigelin">Linen waa maxay?</a><a href="/#xiriir">Xiriir</a>
         </nav>
         <div className="acct">
-          {ready && !email && <button className="btn sm" onClick={() => setDlg("login")}>Gal / Is diiwaangeli</button>}
           {email && isAdmin && <Link className="btn sm gold" href="/admin">Dashboard</Link>}
           {email && <button className="btn sm alt" onClick={() => setDlg("profile")}>{profile?.name || email.split("@")[0]}</button>}
           {email && <button className="btn sm alt" onClick={() => signOut()}>Ka bax</button>}
