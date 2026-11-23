@@ -13,7 +13,7 @@ export default function Header() {
       <header className="top"><div className="wrap">
         <Link className="logo" href="/">MIRO<span> STORE</span></Link>
         <nav className="main" aria-label="Menu">
-          <a href="/#wacyigelin">Linen waa maxay?</a><a href="/#xiriir">Xiriir</a>
+          <a href="/site#wacyigelin">Linen waa maxay?</a><a href="/site#xiriir">Xiriir</a>
         </nav>
         <div className="acct">
           {email && isAdmin && <Link className="btn sm gold" href="/admin">Dashboard</Link>}

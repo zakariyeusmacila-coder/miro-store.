@@ -10,6 +10,7 @@ import LoginModal from "@/components/LoginModal";
 type Order = { id: string; user_id: string; product_name: string; color: string; size: string; total: number; phone: string; status: string; created_at: string };
 type Cust = { id: string; email: string; name: string; phone: string };
 type Prod = { id: string; name: string; type: string; price: number; photo_path: string | null; active: boolean };
+type Sub = { id: string; email: string; created_at: string };
 type Ev = { id: string; title: string; event_date: string; description: string; event_photos: { id: string; path: string }[] };
 
 const cls = (s: string) => (s === "Paid" || s === "Delivered" ? "ok" : s === "Pending" ? "warn" : "bad");
@@ -21,18 +22,20 @@ export default function Admin() {
   const [custs, setCusts] = useState<Cust[]>([]);
   const [prods, setProds] = useState<Prod[]>([]);
   const [evs, setEvs] = useState<Ev[]>([]);
+  const [subs, setSubs] = useState<Sub[]>([]);
   const [msg, setMsg] = useState("");
   const [login, setLogin] = useState(false);
   const [form, setForm] = useState({ title: "", date: "", text: "" });
 
   const load = useCallback(async () => {
-    const [o, c, p, e] = await Promise.all([
+    const [o, c, p, e, sb] = await Promise.all([
       supabase.from("orders").select("*").order("created_at", { ascending: false }),
       supabase.from("profiles").select("id,email,name,phone").order("created_at", { ascending: false }),
       supabase.from("products").select("id,name,type,price,photo_path,active").order("created_at"),
       supabase.from("events").select("id,title,event_date,description,event_photos(id,path)").order("event_date", { ascending: false }),
+      supabase.from("subscribers").select("id,email,created_at").order("created_at", { ascending: false }),
     ]);
-    setOrders((o.data as Order[]) ?? []); setCusts((c.data as Cust[]) ?? []); setProds((p.data as Prod[]) ?? []); setEvs((e.data as Ev[]) ?? []);
+    setOrders((o.data as Order[]) ?? []); setCusts((c.data as Cust[]) ?? []); setProds((p.data as Prod[]) ?? []); setEvs((e.data as Ev[]) ?? []); setSubs((sb.data as Sub[]) ?? []);
   }, []);
   useEffect(() => { if (isAdmin) load(); }, [isAdmin, load]);
 
@@ -59,7 +62,7 @@ export default function Admin() {
 
   const paid = orders.filter((o) => o.status === "Paid" || o.status === "Delivered");
   const rev = paid.reduce((a, o) => a + Number(o.total), 0);
-  const tabs: [string, string][] = [["orders", "Dalabyada"], ["customers", "Macaamiisha"], ["products", "Shaararka"], ["events", "Events"]];
+  const tabs: [string, string][] = [["orders", "Dalabyada"], ["customers", "Macaamiisha"], ["products", "Shaararka"], ["events", "Events"], ["subs", "Email-yada"]];
 
   return (
     <>
@@ -113,6 +116,15 @@ export default function Admin() {
             </tbody></table></div>
           </>
         )}
+
+        {tab === "subs" && (subs.length ? (
+          <div className="tw"><table><thead><tr><th>Taariikh</th><th>Email</th><th></th></tr></thead><tbody>
+            {subs.map((s) => (
+              <tr key={s.id}><td>{new Date(s.created_at).toLocaleString("so-SO")}</td><td>{s.email}</td>
+                <td><button className="btn sm alt" onClick={() => run(() => supabase.from("subscribers").delete().eq("id", s.id), "Waa la tirtiray")}>Tir</button></td></tr>
+            ))}
+          </tbody></table></div>
+        ) : <div className="empty">Weli email lama diiwaangelin. Marka qof is diiwaangeliyo, halkan ayuu ka muuqanayaa.</div>)}
 
         {tab === "events" && (
           <>
