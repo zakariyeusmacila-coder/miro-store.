@@ -15,7 +15,7 @@ export default function Home() {
             
           </div>
           <div className="ph" role="img" aria-label="Maro linen ah oo midabbo kala duwan leh" />
-          <div className="hero-foot"><span>TikTok / Instagram @miro.store.so</span><a href="#wacyigelin">Hoos u fiiri</a></div>
+          <div className="hero-foot"><span>TikTok @miro.store.somalia / Instagram @miro.store.so</span><a href="#wacyigelin">Hoos u fiiri</a></div>
         </section>
 
         <section className="blk learn-sec" id="wacyigelin"><div className="learn"><div className="media"><div className="main" role="img" aria-label="Maro linen ah oo la laalay"></div><div className="inset" role="img" aria-label="Maro linen ah oo jilicsan"></div><span className="cap">Linen dabiici ah</span></div><div className="tx"><span className="eyebrow">Wacyigelin</span><h2>Linen waa maxay?</h2><p className="sub">Maxaa ka dhigaya maro gaar ah?</p><p className="lead2">Linen waa maro dabiici ah oo laga sameeyo geedka Flax, waana mid lagu yaqaan quruxdeeda, neefsashada hawada iyo raaxada ay bixiso.</p><div className="props"><div><b>Dabiici</b><span>Laga sameeyo geedka Flax</span></div><div><b>Neefsasho</b><span>Neefsashada hawada</span></div><div><b>Raaxo</b><span>Raaxada qofka xiranaya</span></div></div><p className="body">Waxaan MIRO STORE u doorannay Linen sababtoo ah waxaan aaminsanahay in labiska wanaagsan uusan ku koobnayn muuqaalka oo keliya, balse uu sidoo kale ku jiro tayada marada iyo raaxada qofka xiranaya.</p><p className="body">Hadafkayagu waa inaan bulshada Soomaaliyeed barno quruxda iyo qiimaha shaarka Linen-ka, annagoo soo bandhigayna Formal iyo Casual shirts oo tayo leh.</p><div className="sign"><b>MIRO STORE.so</b><span>Quality You Can Feel.</span></div></div></div></section>
@@ -29,7 +29,7 @@ export default function Home() {
                 {[
                   { k: "whatsapp", l: "WhatsApp", v: "+252 77 071 4732", h: "https://wa.me/252770714732" },
                   { k: "instagram", l: "Instagram", v: "@miro.store.so", h: "https://www.instagram.com/miro.store.so" },
-                  { k: "tiktok", l: "TikTok", v: "@miro.store.so", h: "https://www.tiktok.com/@miro.store.so" },
+                  { k: "tiktok", l: "TikTok", v: "@miro.store.somalia", h: "https://www.tiktok.com/@miro.store.somalia" },
                 ].map((c) => (
                   <li key={c.k}>
                     <a href={c.h} target="_blank" rel="noopener noreferrer">
